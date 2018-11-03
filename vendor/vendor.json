@@ -1,0 +1,61 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "fm+vq2gjdwo68W4+M21nDXAJeIg=",
+			"path": "github.com/go-pg/pg",
+			"revision": "17180ed3f99e9740d4762bfdf2e75cc17b65bd06",
+			"revisionTime": "2018-11-02T12:13:37Z"
+		},
+		{
+			"checksumSHA1": "dGUEdTYM/1XkD+Qu5ENp1iBU6hM=",
+			"path": "github.com/go-pg/pg/internal",
+			"revision": "17180ed3f99e9740d4762bfdf2e75cc17b65bd06",
+			"revisionTime": "2018-11-02T12:13:37Z"
+		},
+		{
+			"checksumSHA1": "IY/S0C9JytfSuVgGmTcAvhXD9LI=",
+			"path": "github.com/go-pg/pg/internal/parser",
+			"revision": "17180ed3f99e9740d4762bfdf2e75cc17b65bd06",
+			"revisionTime": "2018-11-02T12:13:37Z"
+		},
+		{
+			"checksumSHA1": "HqG0PaieB+C7JM/GoCpEnshrhc0=",
+			"path": "github.com/go-pg/pg/internal/pool",
+			"revision": "17180ed3f99e9740d4762bfdf2e75cc17b65bd06",
+			"revisionTime": "2018-11-02T12:13:37Z"
+		},
+		{
+			"checksumSHA1": "cJJGDZlHDl+ZJZGR1Q6REMhNG6o=",
+			"path": "github.com/go-pg/pg/orm",
+			"revision": "17180ed3f99e9740d4762bfdf2e75cc17b65bd06",
+			"revisionTime": "2018-11-02T12:13:37Z"
+		},
+		{
+			"checksumSHA1": "9aUegUEuIz1COLhQYrSraFp3Zqg=",
+			"path": "github.com/go-pg/pg/types",
+			"revision": "17180ed3f99e9740d4762bfdf2e75cc17b65bd06",
+			"revisionTime": "2018-11-02T12:13:37Z"
+		},
+		{
+			"checksumSHA1": "4eelJOSLZoDzLuaJvgilOBVNovU=",
+			"path": "github.com/jinzhu/inflection",
+			"revision": "04140366298a54a039076d798123ffa108fff46c",
+			"revisionTime": "2018-03-08T03:36:59Z"
+		},
+		{
+			"checksumSHA1": "1MGpGDQqnUoRpv7VEcQrXOBydXE=",
+			"path": "golang.org/x/crypto/pbkdf2",
+			"revision": "4d3f4d9ffa16a13f451c3b2999e9c49e9750bf06",
+			"revisionTime": "2018-10-23T16:52:47Z"
+		},
+		{
+			"checksumSHA1": "qRDbkjrz7ygCGk1+xJZe9WXUUR8=",
+			"path": "mellium.im/sasl",
+			"revision": "80f447d8107c05f712682c349a26e081488de60c",
+			"revisionTime": "2018-10-15T02:44:45Z"
+		}
+	],
+	"rootPath": "github.com/ruybrito106/ads-manager-services"
+}

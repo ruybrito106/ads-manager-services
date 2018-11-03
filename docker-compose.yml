@@ -1,0 +1,32 @@
+version: '3'
+services:
+  postgresdb:
+    image: postgres
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+  campaign-service:
+    image: golang:1.11.1-alpine
+    env_file:
+      - .env
+    volumes:
+      - .:/go/src/github.com/ruybrito106/ads-manager-services
+    links:
+      - postgresdb
+    working_dir: /go/src/github.com/ruybrito106/ads-manager-services
+    command: go run cmd/campaign_service/main.go
+    ports:
+      - "8081:8081"
+  gateway-service:
+    image: golang:1.11.1-alpine
+    env_file:
+      - .env
+    volumes:
+      - .:/go/src/github.com/ruybrito106/ads-manager-services
+    links:
+      - campaign-service
+    working_dir: /go/src/github.com/ruybrito106/ads-manager-services
+    command: go run cmd/gateway_service/main.go
+    ports:
+      - "8080:8080"
