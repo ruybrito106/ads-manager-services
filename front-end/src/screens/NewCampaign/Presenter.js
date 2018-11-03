@@ -4,6 +4,7 @@ import View from "./View";
 import Model from "./Model";
 import places from "./data/places";
 import ads from "./data/ads";
+import APIGateway from "../../server/APIGateway";
 
 export default class Presenter extends React.Component {
   state = Model;
@@ -13,7 +14,7 @@ export default class Presenter extends React.Component {
       <View
         {...this.state}
         onVisitsGoalChange={this.handleVisitsGoalChange}
-        onCpvChange={this.handleCpvChange}
+        onNameChange={this.handleNameChange}
         onPlacesChange={this.handlePlacesChange}
         onAdsChange={this.handleAdsChange}
         onStartDateChange={this.handleStartDateChange}
@@ -29,8 +30,8 @@ export default class Presenter extends React.Component {
     this.setState({ visitsGoal: value });
   };
 
-  handleCpvChange = (e, { value }) => {
-    this.setState({ cpv: value });
+  handleNameChange = (e, { value }) => {
+    this.setState({ name: value });
   };
 
   handlePlacesChange = (e, { value }) => {
@@ -49,5 +50,17 @@ export default class Presenter extends React.Component {
     this.setState({ endDate: value });
   };
 
-  handleSubmit = () => {};
+  handleSubmit = () => {
+    const { name, visitsGoal, startDate, endDate } = this.state;
+
+    APIGateway.createCampaign({
+      data: JSON.stringify({
+        end_ts: endDate.unix(),
+        start_ts: startDate.unix(),
+        visits_goal: parseInt(visitsGoal),
+        status: "active",
+        name
+      })
+    });
+  };
 }

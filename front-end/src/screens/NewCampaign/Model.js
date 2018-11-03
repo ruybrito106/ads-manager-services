@@ -4,7 +4,7 @@ export default {
   visitsGoal: "",
   startDate: moment(),
   endDate: moment(),
-  cpv: "",
+  name: "",
   places: [],
   ads: []
 };
