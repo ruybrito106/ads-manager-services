@@ -9,6 +9,8 @@ import (
 
 type Store interface {
 	CreateCampaign(*campaigns.Campaign) (*campaigns.Campaign, error)
+	GetCampaigns() ([]*campaigns.Campaign, error)
+
 	PauseCampaign(id int32) error
 }
 
@@ -23,6 +25,11 @@ func New(logger log.Logger) basicStore {
 func (s basicStore) CreateCampaign(campaign *campaigns.Campaign) (*campaigns.Campaign, error) {
 	db := postgres.NewDatabase(s.logger)
 	return db.CreateCampaign(campaign)
+}
+
+func (s basicStore) GetCampaigns() ([]*campaigns.Campaign, error) {
+	db := postgres.NewDatabase(s.logger)
+	return db.GetCampaigns()
 }
 
 func (s basicStore) PauseCampaign(id int32) error {

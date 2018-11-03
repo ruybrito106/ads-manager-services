@@ -7,6 +7,7 @@ import (
 
 type Service interface {
 	// Campaign Service Methods
+	GetCampaigns() ([]*campaigns.Campaign, error)
 	CreateCampaign(*campaigns.Campaign) (*campaigns.Campaign, error)
 	PauseCampaign(int32) error
 
@@ -23,6 +24,11 @@ func NewService(iCampaign campaign_interface.CampaignInterface) Service {
 		ICampaign: iCampaign,
 	}
 	return service
+}
+
+
+func (s basicService) GetCampaigns() ([]*campaigns.Campaign, error) {
+	return s.ICampaign.GetCampaigns()
 }
 
 func (s basicService) CreateCampaign(campaign *campaigns.Campaign) (*campaigns.Campaign, error) {

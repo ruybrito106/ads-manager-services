@@ -38,6 +38,7 @@ func NewGatewayServer(addr string, iCampaign campaign_interface.CampaignInterfac
 
 func (s server) ListenAndServe() {
 
+	http.HandleFunc(campaignEntryPoint, s.getCampaignsHandler)
 	http.HandleFunc(createCampaignRoute, s.createCampaignHandler)
 	http.HandleFunc(pauseCampaignRoute, s.pauseCampaignHandler)
 

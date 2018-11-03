@@ -3,6 +3,7 @@ package postgres
 import (
 	"log"
 	"os"
+	"fmt"
 
 	"github.com/go-pg/pg"
 
@@ -17,6 +18,7 @@ type BasicDatabase interface {
 }
 
 type CampaignDatabase interface {
+	GetCampaigns() ([]*campaigns.Campaign, error)
 	CreateCampaign(*campaigns.Campaign) (*campaigns.Campaign, error)
 	PauseCampaign(id int32) error
 }
@@ -77,6 +79,18 @@ func (c campaignDatabase) CreateCampaign(campaign *campaigns.Campaign) (*campaig
 	}
 
 	return campaign, nil
+}
+
+func (c campaignDatabase) GetCampaigns() ([]*campaigns.Campaign, error) {
+	db := c.GetConnection()
+
+	campaigns := []*campaigns.Campaign{}
+
+	if err := db.Model(&campaigns).Select(); err != nil {
+		return nil, err
+	}
+
+	return campaigns, nil
 }
 
 func (c campaignDatabase) PauseCampaign(id int32) error {

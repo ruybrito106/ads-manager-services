@@ -9,6 +9,24 @@ import (
 	campaignCodec "github.com/ruybrito106/ads-manager-services/src/campaigns/json"
 )
 
+func (s server) getCampaignsHandler(w http.ResponseWriter, r *http.Request) {
+
+	campaigns, err := s.Svc.GetCampaigns()
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	encoded, err := campaignCodec.CampaignsToJSON(campaigns)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	w.Write(encoded)
+}
+
+
 func (s server) createCampaignHandler(w http.ResponseWriter, r *http.Request) {
 
 	campaign := &campaigns.Campaign{}

@@ -31,6 +31,7 @@ func NewCampaignServer(addr string, logger log.Logger) CampaignServer {
 
 func (s server) ListenAndServe() {
 
+	http.HandleFunc(entryPoint, s.getCampaignsHandler)
 	http.HandleFunc(createCampaignRoute, s.createCampaignHandler)
 	http.HandleFunc(pauseCampaignRoute, s.pauseCampaignHandler)
 

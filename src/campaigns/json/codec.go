@@ -17,3 +17,16 @@ func CampaignFromJSON(encoded []byte) (*campaigns.Campaign, error) {
 	}
 	return &campaign, nil
 }
+
+func CampaignsToJSON(campaigns []*campaigns.Campaign) ([]byte, error) {
+	return json.Marshal(&campaigns)
+}
+
+func CampaignsFromJSON(encoded []byte) ([]*campaigns.Campaign, error) {
+	campaigns := []*campaigns.Campaign{}
+	if err := json.Unmarshal(encoded, &campaigns); err != nil {
+		return nil, err
+	}
+	return campaigns, nil
+}
+

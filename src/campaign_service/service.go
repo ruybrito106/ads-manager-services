@@ -8,6 +8,7 @@ import (
 )
 
 type Service interface {
+	GetCampaigns() ([]*campaigns.Campaign, error)
 	CreateCampaign(*campaigns.Campaign) (*campaigns.Campaign, error)
 	PauseCampaign(int32) error
 }
@@ -20,6 +21,10 @@ func NewService(logger log.Logger) Service {
 	var service Service
 	service = basicService{store.New(logger)}
 	return service
+}
+
+func (s basicService) GetCampaigns() ([]*campaigns.Campaign, error) {
+	return s.store.GetCampaigns()
 }
 
 func (s basicService) CreateCampaign(campaign *campaigns.Campaign) (*campaigns.Campaign, error) {
