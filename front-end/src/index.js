@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App";
-import * as serviceWorker from "./serviceWorker";
+import App from "./screens/App";
+import * as serviceWorker from "./config/serviceWorker";
 import "react-datepicker/dist/react-datepicker.css";
 import "semantic-ui-css/semantic.min.css";
 
