@@ -1,0 +1,18 @@
+.login {
+  height: 100%;
+}
+
+.login__card.ui.card {
+  margin: auto;
+  width: 300px;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.login__input {
+  margin: 24px 0px;
+}
+
+.login__image {
+  margin: 24px 0px;
+}

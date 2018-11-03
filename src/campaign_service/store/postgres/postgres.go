@@ -3,7 +3,6 @@ package postgres
 import (
 	"log"
 	"os"
-	"fmt"
 
 	"github.com/go-pg/pg"
 
