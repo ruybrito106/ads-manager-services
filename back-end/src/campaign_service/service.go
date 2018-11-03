@@ -3,8 +3,8 @@ package campaign_service
 import (
 	"log"
 
-	"github.com/ruybrito106/ads-manager-services/src/campaign_service/store"
-	"github.com/ruybrito106/ads-manager-services/src/campaigns"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaign_service/store"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaigns"
 )
 
 type Service interface {

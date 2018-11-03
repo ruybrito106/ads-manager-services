@@ -3,7 +3,7 @@ package gateway_service
 import (
 	"net/http"
 
-	"github.com/ruybrito106/ads-manager-services/src/campaign_interface"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaign_interface"
 )
 
 const entryPoint = "/"

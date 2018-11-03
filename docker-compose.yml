@@ -11,10 +11,10 @@ services:
     env_file:
       - .env
     volumes:
-      - .:/go/src/github.com/ruybrito106/ads-manager-services
+      - ./back-end:/go/src/github.com/ruybrito106/ads-manager-services/back-end
     links:
       - postgresdb
-    working_dir: /go/src/github.com/ruybrito106/ads-manager-services
+    working_dir: /go/src/github.com/ruybrito106/ads-manager-services/back-end
     command: go run cmd/campaign_service/main.go
     ports:
       - "8081:8081"
@@ -23,10 +23,10 @@ services:
     env_file:
       - .env
     volumes:
-      - .:/go/src/github.com/ruybrito106/ads-manager-services
+      - ./back-end:/go/src/github.com/ruybrito106/ads-manager-services/back-end
     links:
       - campaign-service
-    working_dir: /go/src/github.com/ruybrito106/ads-manager-services
+    working_dir: /go/src/github.com/ruybrito106/ads-manager-services/back-end
     command: go run cmd/gateway_service/main.go
     ports:
       - "8080:8080"

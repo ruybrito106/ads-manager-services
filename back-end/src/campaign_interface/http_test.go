@@ -3,7 +3,7 @@ package campaign_interface
 import (
 	"testing"
 
-	"github.com/ruybrito106/ads-manager-services/src/campaigns"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaigns"
 	"github.com/stretchr/testify/assert"
 )
 

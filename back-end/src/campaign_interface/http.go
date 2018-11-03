@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ruybrito106/ads-manager-services/src/campaigns"
-	campaignCodec "github.com/ruybrito106/ads-manager-services/src/campaigns/json"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaigns"
+	campaignCodec "github.com/ruybrito106/ads-manager-services/back-end/src/campaigns/json"
 )
 
 const contentType = "application/json"

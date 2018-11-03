@@ -6,7 +6,7 @@ import (
 
 	"github.com/go-pg/pg"
 
-	"github.com/ruybrito106/ads-manager-services/src/campaigns"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaigns"
 )
 
 var connection *pg.DB

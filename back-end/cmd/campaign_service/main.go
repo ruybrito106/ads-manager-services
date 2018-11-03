@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/ruybrito106/ads-manager-services/src/campaign_service"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaign_service"
 )
 
 func alive() {

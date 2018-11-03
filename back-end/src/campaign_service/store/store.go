@@ -3,8 +3,8 @@ package store
 import (
 	"log"
 
-	"github.com/ruybrito106/ads-manager-services/src/campaign_service/store/postgres"
-	"github.com/ruybrito106/ads-manager-services/src/campaigns"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaign_service/store/postgres"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaigns"
 )
 
 type Store interface {

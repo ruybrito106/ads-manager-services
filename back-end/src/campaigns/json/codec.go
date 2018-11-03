@@ -3,7 +3,7 @@ package json
 import (
 	"encoding/json"
 
-	"github.com/ruybrito106/ads-manager-services/src/campaigns"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaigns"
 )
 
 func CampaignToJSON(campaign *campaigns.Campaign) ([]byte, error) {

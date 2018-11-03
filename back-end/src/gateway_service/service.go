@@ -1,8 +1,8 @@
 package gateway_service
 
 import (
-	"github.com/ruybrito106/ads-manager-services/src/campaign_interface"
-	"github.com/ruybrito106/ads-manager-services/src/campaigns"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaign_interface"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaigns"
 )
 
 type Service interface {

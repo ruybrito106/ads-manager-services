@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/ruybrito106/ads-manager-services/src/campaigns"
-	campaignCodec "github.com/ruybrito106/ads-manager-services/src/campaigns/json"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaigns"
+	campaignCodec "github.com/ruybrito106/ads-manager-services/back-end/src/campaigns/json"
 )
 
 func (s server) createCampaignHandler(w http.ResponseWriter, r *http.Request) {

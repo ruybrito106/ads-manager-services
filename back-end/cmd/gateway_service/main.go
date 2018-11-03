@@ -5,8 +5,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/ruybrito106/ads-manager-services/src/campaign_interface"
-	"github.com/ruybrito106/ads-manager-services/src/gateway_service"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaign_interface"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/gateway_service"
 )
 
 func alive() {
