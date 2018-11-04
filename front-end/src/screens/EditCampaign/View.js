@@ -13,9 +13,6 @@ export default ({
   ads,
   placeOptions,
   adOptions,
-  onVisitsGoalChange,
-  onStartDateChange,
-  onEndDateChange,
   onNameChange,
   onPlacesChange,
   onAdsChange,
@@ -42,7 +39,6 @@ export default ({
           fluid
           disabled
           value={visitsGoal}
-          onChange={onVisitsGoalChange}
           placeholder="3.000"
         />
         <p>Places</p>
@@ -78,7 +74,6 @@ export default ({
             disabled
             startDate={startDate}
             endDate={endDate}
-            onChange={onStartDateChange}
           />
           <DatePicker
             className="edit-campaign__date--disabled"
@@ -87,7 +82,6 @@ export default ({
             disabled
             startDate={startDate}
             endDate={endDate}
-            onChange={onEndDateChange}
           />
         </div>
         <Button

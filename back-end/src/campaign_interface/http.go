@@ -91,6 +91,36 @@ func (c *campaignHttpClient) CreateCampaign(campaign *campaigns.Campaign) (*camp
 
 }
 
+func (c *campaignHttpClient) EditCampaign(campaign *campaigns.Campaign) (*campaigns.Campaign, error) {
+
+	editCampaignAddr := c.addr + "/campaigns/edit"
+
+	jsonCampaign, err := campaignCodec.CampaignToJSON(campaign)
+	if err != nil {
+		return nil, err
+	}
+
+	reader := bytes.NewReader(jsonCampaign)
+	res, err := c.client.Post(editCampaignAddr, contentType, reader)
+	if err != nil {
+		return nil, err
+	}
+
+	defer res.Body.Close()
+	if res.StatusCode != http.StatusOK {
+		return nil, errors.New("unexpected response from campaign service")
+	}
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	return campaignCodec.CampaignFromJSON(body)
+
+}
+
+
 func (c *campaignHttpClient) PauseCampaign(id int32) error {
 
 	pauseCampaignAddr := strings.Join(

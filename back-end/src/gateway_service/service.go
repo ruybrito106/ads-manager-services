@@ -9,6 +9,7 @@ type Service interface {
 	// Campaign Service Methods
 	GetCampaigns() ([]*campaigns.Campaign, error)
 	CreateCampaign(*campaigns.Campaign) (*campaigns.Campaign, error)
+	EditCampaign(*campaigns.Campaign) (*campaigns.Campaign, error)
 	PauseCampaign(int32) error
 
 	// Auth Service Methods
@@ -29,6 +30,10 @@ func NewService(iCampaign campaign_interface.CampaignInterface) Service {
 
 func (s basicService) GetCampaigns() ([]*campaigns.Campaign, error) {
 	return s.ICampaign.GetCampaigns()
+}
+
+func (s basicService) EditCampaign(campaign *campaigns.Campaign) (*campaigns.Campaign, error) {
+	return s.ICampaign.EditCampaign(campaign)
 }
 
 func (s basicService) CreateCampaign(campaign *campaigns.Campaign) (*campaigns.Campaign, error) {

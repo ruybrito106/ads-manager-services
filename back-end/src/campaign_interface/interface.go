@@ -6,6 +6,7 @@ import (
 
 type CampaignInterface interface {
 	GetCampaigns() ([]*campaigns.Campaign, error)
+	EditCampaign(*campaigns.Campaign) (*campaigns.Campaign, error)
 	CreateCampaign(*campaigns.Campaign) (*campaigns.Campaign, error)
 	PauseCampaign(int32) error
 }

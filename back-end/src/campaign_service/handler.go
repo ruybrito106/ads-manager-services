@@ -32,6 +32,29 @@ func (s server) createCampaignHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(encoded)
 }
 
+func (s server) editCampaignHandler(w http.ResponseWriter, r *http.Request) {
+
+	campaign := &campaigns.Campaign{}
+	if err := json.NewDecoder(r.Body).Decode(&campaign); err != nil {
+		w.WriteHeader(http.StatusUnprocessableEntity)
+		return
+	}
+
+	created, err := s.Svc.EditCampaign(campaign)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	encoded, err := campaignCodec.CampaignToJSON(created)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	w.Write(encoded)
+}
+
 func (s server) getCampaignsHandler(w http.ResponseWriter, r *http.Request) {
 
 	campaigns, err := s.Svc.GetCampaigns()

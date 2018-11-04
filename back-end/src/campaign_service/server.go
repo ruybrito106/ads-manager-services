@@ -8,6 +8,7 @@ import (
 const (
 	entryPoint          = "/campaigns"
 	createCampaignRoute = entryPoint + "/create"
+	editCampaignRoute = entryPoint + "/edit"
 	pauseCampaignRoute  = entryPoint + "/pause"
 )
 
@@ -32,6 +33,7 @@ func NewCampaignServer(addr string, logger log.Logger) CampaignServer {
 func (s server) ListenAndServe() {
 
 	http.HandleFunc(entryPoint, s.getCampaignsHandler)
+	http.HandleFunc(editCampaignRoute, s.editCampaignHandler)
 	http.HandleFunc(createCampaignRoute, s.createCampaignHandler)
 	http.HandleFunc(pauseCampaignRoute, s.pauseCampaignHandler)
 

@@ -11,6 +11,7 @@ const entryPoint = "/"
 const (
 	campaignEntryPoint  = entryPoint + "campaigns"
 	createCampaignRoute = campaignEntryPoint + "/create"
+	editCampaignRoute = campaignEntryPoint + "/edit"
 	pauseCampaignRoute  = campaignEntryPoint + "/pause"
 
 	authEntryPoint    = entryPoint + "auth"
@@ -40,6 +41,7 @@ func (s server) ListenAndServe() {
 
 	http.HandleFunc(campaignEntryPoint, s.getCampaignsHandler)
 	http.HandleFunc(createCampaignRoute, s.createCampaignHandler)
+	http.HandleFunc(editCampaignRoute, s.editCampaignHandler)
 	http.HandleFunc(pauseCampaignRoute, s.pauseCampaignHandler)
 
 	http.ListenAndServe(s.Addr, nil)

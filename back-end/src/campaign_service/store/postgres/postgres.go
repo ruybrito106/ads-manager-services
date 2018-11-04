@@ -19,6 +19,7 @@ type BasicDatabase interface {
 
 type CampaignDatabase interface {
 	GetCampaigns() ([]*campaigns.Campaign, error)
+	EditCampaign(*campaigns.Campaign) (*campaigns.Campaign, error)
 	CreateCampaign(*campaigns.Campaign) (*campaigns.Campaign, error)
 	PauseCampaign(id int32) error
 }
@@ -75,6 +76,16 @@ func (c campaignDatabase) CreateCampaign(campaign *campaigns.Campaign) (*campaig
 	db := c.GetConnection()
 
 	if err := db.Insert(campaign); err != nil {
+		return nil, err
+	}
+
+	return campaign, nil
+}
+
+func (c campaignDatabase) EditCampaign(campaign *campaigns.Campaign) (*campaigns.Campaign, error) {
+	db := c.GetConnection()
+
+	if err := db.Update(campaign); err != nil {
 		return nil, err
 	}
 
