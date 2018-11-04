@@ -12,13 +12,12 @@ export default ({ campaigns, onCampaignClick, onNewCampaign }) => (
           className="list-campaigns__list"
           animated
           verticalAlign="middle"
-          onItemClick={onCampaignClick}
           relaxed="very"
           selection
           size="medium"
         >
-          {campaigns.map(({ name, start_ts, end_ts }) => (
-            <List.Item>
+          {campaigns.map(({ id, name, start_ts, end_ts }) => (
+            <List.Item key={id} onClick={() => onCampaignClick(id)}>
               <List.Icon
                 name="money bill alternate outline"
                 size="large"

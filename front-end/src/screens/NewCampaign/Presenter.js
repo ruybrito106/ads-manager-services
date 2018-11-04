@@ -2,8 +2,8 @@ import React from "react";
 
 import View from "./View";
 import Model from "./Model";
-import places from "./data/places";
-import ads from "./data/ads";
+import places from "../../data/places";
+import ads from "../../data/ads";
 import APIGateway from "../../server/APIGateway";
 
 export default class Presenter extends React.Component {
@@ -60,9 +60,9 @@ export default class Presenter extends React.Component {
         visits_goal: parseInt(visitsGoal),
         status: "active",
         name
-      })
+      }),
+      onSuccess: () => this.props.history.push("/campaigns"),
+      onFailure: () => this.props.history.push("/campaigns")
     });
-
-    this.props.history.push("/campaigns");
   };
 }
