@@ -4,5 +4,7 @@ CREATE TABLE campaigns(
     start_ts integer,
     end_ts integer,
     visits_goal integer,
-    status text
+    status text,
+    places text ARRAY,
+    ads text ARRAY
 );

@@ -1,4 +1,5 @@
 import React from "react";
+import qs from "query-string";
 
 import View from "./View";
 import Model from "./Model";
@@ -24,17 +25,9 @@ export default class Presenter extends React.Component {
   }
 
   handleCampaignClick = id => {
-    const {
-      name,
-      start_ts,
-      end_ts,
-      status,
-      visits_goal
-    } = this.state.campaigns.find(c => c.id === id);
+    const campaign = this.state.campaigns.find(c => c.id === id);
 
-    this.props.history.push(
-      `campaigns/edit?id=${id}&name=${name}&start_ts=${start_ts}&end_ts=${end_ts}&status=${status}&visits_goal=${visits_goal}`
-    );
+    this.props.history.push(`campaigns/edit?${qs.stringify(campaign)}`);
   };
 
   handleNewCampaign = () => {

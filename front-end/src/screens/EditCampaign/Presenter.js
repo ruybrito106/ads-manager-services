@@ -11,7 +11,7 @@ export default class Presenter extends React.Component {
   state = Model;
 
   componentDidMount = () => {
-    const { id, name, start_ts, end_ts, status, visits_goal } = qs.parse(
+    const { id, name, start_ts, end_ts, status, visits_goal, places, ads } = qs.parse(
       this.props.location.search
     );
 
@@ -21,7 +21,9 @@ export default class Presenter extends React.Component {
       startDate: moment.unix(start_ts),
       endDate: moment.unix(end_ts),
       status,
-      visitsGoal: visits_goal
+      visitsGoal: visits_goal,
+      places,
+      ads
     });
   };
 

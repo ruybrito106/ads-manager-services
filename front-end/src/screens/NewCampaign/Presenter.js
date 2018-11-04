@@ -51,7 +51,7 @@ export default class Presenter extends React.Component {
   };
 
   handleSubmit = () => {
-    const { name, visitsGoal, startDate, endDate } = this.state;
+    const { name, visitsGoal, startDate, endDate, places, ads } = this.state;
 
     APIGateway.createCampaign({
       data: JSON.stringify({
@@ -59,7 +59,9 @@ export default class Presenter extends React.Component {
         start_ts: startDate.unix(),
         visits_goal: parseInt(visitsGoal),
         status: "active",
-        name
+        name,
+        places,
+        ads
       }),
       onSuccess: () => this.props.history.push("/campaigns"),
       onFailure: () => this.props.history.push("/campaigns")

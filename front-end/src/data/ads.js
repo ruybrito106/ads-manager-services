@@ -27,8 +27,8 @@ export default [
     )
   },
   {
-    text: "foods",
-    value: 3,
+    text: "Peça foods!",
+    value: "foods",
     content: (
       <Header
         as="h5"

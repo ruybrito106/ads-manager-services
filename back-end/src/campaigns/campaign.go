@@ -14,4 +14,7 @@ type Campaign struct {
 	EndTs   int64 `json:"end_ts"`
 
 	VisitsGoal int32 `json:"visits_goal"`
+
+	Places []string `json:"places" sql:",array"`
+	Ads []string `json:"ads" sql:",array"`
 }
