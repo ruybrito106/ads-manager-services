@@ -19,7 +19,8 @@ export default ({
   onNameChange,
   onPlacesChange,
   onAdsChange,
-  onSubmit
+  onSubmit,
+  onCancel
 }) => (
   <div className="new-campaign">
     <Card className="new-campaign__card">
@@ -85,14 +86,14 @@ export default ({
             onChange={onEndDateChange}
           />
         </div>
-        <Button
-          className="new-campaign__input"
-          primary
-          fluid
-          onClick={onSubmit}
-        >
-          Create Campaign
-        </Button>
+        <div>
+          <Button className="new-campaign__button" primary onClick={onCancel}>
+            Cancel
+          </Button>
+          <Button className="new-campaign__button" primary onClick={onSubmit}>
+            Create
+          </Button>
+        </div>
       </Card.Content>
     </Card>
   </div>

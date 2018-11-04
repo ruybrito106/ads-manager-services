@@ -6,15 +6,22 @@ import View from "./View";
 import Model from "./Model";
 import places from "../../data/places";
 import ads from "../../data/ads";
-import APIGateway from "../../server/APIGateway"
+import APIGateway from "../../server/APIGateway";
 
 export default class Presenter extends React.Component {
   state = Model;
 
   componentDidMount = () => {
-    const { id, name, start_ts, end_ts, status, visits_goal, places, ads } = qs.parse(
-      this.props.location.search
-    );
+    const {
+      id,
+      name,
+      start_ts,
+      end_ts,
+      status,
+      visits_goal,
+      places,
+      ads
+    } = qs.parse(this.props.location.search);
 
     this.setState({
       id,
@@ -23,8 +30,8 @@ export default class Presenter extends React.Component {
       endDate: moment.unix(end_ts),
       status,
       visitsGoal: visits_goal,
-      places: Array.isArray(places)? places : [places],
-      ads: Array.isArray(ads)? ads : [ads]
+      places: Array.isArray(places) ? places : [places],
+      ads: Array.isArray(ads) ? ads : [ads]
     });
   };
 
@@ -36,6 +43,7 @@ export default class Presenter extends React.Component {
         onPlacesChange={this.handlePlacesChange}
         onAdsChange={this.handleAdsChange}
         onSubmit={this.handleSubmit}
+        onCancel={this.handleCancel}
         placeOptions={places}
         adOptions={ads}
       />
@@ -55,7 +63,15 @@ export default class Presenter extends React.Component {
   };
 
   handleSubmit = () => {
-    const { id, name, visitsGoal, startDate, endDate, places, ads } = this.state;
+    const {
+      id,
+      name,
+      visitsGoal,
+      startDate,
+      endDate,
+      places,
+      ads
+    } = this.state;
 
     APIGateway.editCampaign({
       data: JSON.stringify({
@@ -71,5 +87,9 @@ export default class Presenter extends React.Component {
       onSuccess: () => this.props.history.push("/campaigns"),
       onFailure: () => this.props.history.push("/campaigns")
     });
+  };
+
+  handleCancel = () => {
+    this.props.history.push("/campaigns");
   };
 }

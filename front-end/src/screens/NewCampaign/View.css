@@ -29,3 +29,12 @@
   border: none;
   width: 100px;
 }
+
+.new-campaign__button.ui.button {
+  margin: 0px 0px 0px 0px;
+  width: 130px;
+}
+
+.new-campaign__button.ui.button:first-child{
+  margin-right: 12px;
+}

@@ -22,6 +22,7 @@ export default class Presenter extends React.Component {
         onSubmit={this.handleSubmit}
         placeOptions={places}
         adOptions={ads}
+        onCancel={this.handleCancel}
       />
     );
   }
@@ -67,4 +68,8 @@ export default class Presenter extends React.Component {
       onFailure: () => this.props.history.push("/campaigns")
     });
   };
+
+  handleCancel = () => {
+    this.props.history.push("/campaigns")
+  }
 }

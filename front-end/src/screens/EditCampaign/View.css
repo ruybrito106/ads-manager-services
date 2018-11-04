@@ -13,6 +13,15 @@
   margin: 12px 0px 24px 0px;
 }
 
+.edit-campaign__button.ui.button {
+  margin: 0px 0px 0px 0px;
+  width: 130px;
+}
+
+.edit-campaign__button.ui.button:first-child{
+  margin-right: 12px;
+}
+
 .react-datepicker-wrapper {
   width: 124px;
   opacity: 0.75;
