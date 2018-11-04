@@ -62,5 +62,7 @@ export default class Presenter extends React.Component {
         name
       })
     });
+
+    this.props.history.push("/campaigns");
   };
 }

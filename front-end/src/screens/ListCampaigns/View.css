@@ -1,0 +1,23 @@
+.list-campaigns {
+  height: 100%;
+}
+
+.list-campaigns__list {
+  height: 400px;
+  overflow: auto;
+}
+
+.list-campaigns__card.ui.card {
+  margin: auto;
+  width: 300px;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.list-campaigns__element {
+  margin: 24px 0px;
+}
+
+.list-campaigns__header.ui.header {
+  padding: 12px 0px 0px 0px;
+}
