@@ -5,9 +5,36 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/ruybrito106/ads-manager-services/back-end/src/users"
+
 	"github.com/ruybrito106/ads-manager-services/back-end/src/campaigns"
 	campaignCodec "github.com/ruybrito106/ads-manager-services/back-end/src/campaigns/json"
+	userCodec "github.com/ruybrito106/ads-manager-services/back-end/src/users/json"
 )
+
+func (s server) loginUserHandler(w http.ResponseWriter, r *http.Request) {
+	enableCors(&w)
+
+	user := &users.User{}
+	if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
+		w.WriteHeader(http.StatusUnprocessableEntity)
+		return
+	}
+
+	logged, err := s.Svc.LoginUser(user)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	encoded, err := userCodec.UserToJSON(logged)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	w.Write(encoded)
+}
 
 func (s server) getCampaignsHandler(w http.ResponseWriter, r *http.Request) {
 	enableCors(&w)
@@ -27,9 +54,15 @@ func (s server) getCampaignsHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(encoded)
 }
 
-
 func (s server) createCampaignHandler(w http.ResponseWriter, r *http.Request) {
 	enableCors(&w)
+
+	var idStrs []string
+	if idStrs = r.URL.Query()["id"]; len(idStrs) == 0 {
+		idStrs = []string{"superuser"}
+		// w.WriteHeader(http.StatusUnprocessableEntity)
+		// return
+	}
 
 	campaign := &campaigns.Campaign{}
 	if err := json.NewDecoder(r.Body).Decode(&campaign); err != nil {
@@ -37,7 +70,7 @@ func (s server) createCampaignHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	created, err := s.Svc.CreateCampaign(campaign)
+	created, err := s.Svc.CreateCampaign(idStrs[0], campaign)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -55,13 +88,20 @@ func (s server) createCampaignHandler(w http.ResponseWriter, r *http.Request) {
 func (s server) editCampaignHandler(w http.ResponseWriter, r *http.Request) {
 	enableCors(&w)
 
+	var idStrs []string
+	if idStrs = r.URL.Query()["id"]; len(idStrs) == 0 {
+		idStrs = []string{"superuser"}
+		// w.WriteHeader(http.StatusUnprocessableEntity)
+		// return
+	}
+
 	campaign := &campaigns.Campaign{}
 	if err := json.NewDecoder(r.Body).Decode(&campaign); err != nil {
 		w.WriteHeader(http.StatusUnprocessableEntity)
 		return
 	}
 
-	created, err := s.Svc.EditCampaign(campaign)
+	created, err := s.Svc.EditCampaign(idStrs[0], campaign)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return

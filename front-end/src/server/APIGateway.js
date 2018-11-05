@@ -1,6 +1,17 @@
 import axios from "axios";
 
 export default class APIGateway {
+  static loginUser({ data, onSuccess = () => {}, onFailure = () => {} }) {
+    axios
+      .post("http://localhost:8080/users/login", data)
+      .then(response => {
+        onSuccess(response);
+      })
+      .catch(error => {
+        onFailure(error);
+      });
+  }
+
   static createCampaign({ data, onSuccess = () => {}, onFailure = () => {} }) {
     axios
       .post("http://localhost:8080/campaigns/create", data)
