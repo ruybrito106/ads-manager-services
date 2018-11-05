@@ -46,8 +46,16 @@ func (a *authHttpClient) LoginUser(user *users.User) (*users.User, error) {
 
 }
 
+func (a *authHttpClient) RegisterUser(user *users.User) (*users.User, error) {
+
+	// Should perform http request to external auth subsystem
+	return user, nil
+
+}
+
 func (a *authHttpClient) GetUserByID(id string) (*users.User, error) {
 
+	// Should perform http request to external auth subsystem
 	if id == "superuser" {
 		return &users.User{ID: id, Password: "12345"}, nil
 	}

@@ -16,6 +16,7 @@ type Service interface {
 
 	// Auth Service Methods
 	LoginUser(*users.User) (*users.User, error)
+	RegisterUser(*users.User) (*users.User, error)
 }
 
 type basicService struct {
@@ -34,6 +35,10 @@ func NewService(iCampaignController campaign_controller_interface.CampaignContro
 
 func (s basicService) LoginUser(user *users.User) (*users.User, error) {
 	return s.IAuth.LoginUser(user)
+}
+
+func (s basicService) RegisterUser(user *users.User) (*users.User, error) {
+	return s.IAuth.RegisterUser(user)
 }
 
 func (s basicService) GetCampaigns() ([]*campaigns.Campaign, error) {

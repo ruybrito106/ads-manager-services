@@ -12,6 +12,17 @@ export default class APIGateway {
       });
   }
 
+  static registerUser({ data, onSuccess = () => {}, onFailure = () => {} }) {
+    axios
+      .post("http://localhost:8080/users/register", data)
+      .then(response => {
+        onSuccess(response);
+      })
+      .catch(error => {
+        onFailure(error);
+      });
+  }
+
   static createCampaign({ data, onSuccess = () => {}, onFailure = () => {} }) {
     axios
       .post("http://localhost:8080/campaigns/create", data)

@@ -15,8 +15,9 @@ const (
 	editCampaignRoute   = campaignEntryPoint + "/edit"
 	pauseCampaignRoute  = campaignEntryPoint + "/pause"
 
-	authEntryPoint = entryPoint + "users"
-	loginUserRoute = authEntryPoint + "/login"
+	authEntryPoint    = entryPoint + "users"
+	loginUserRoute    = authEntryPoint + "/login"
+	registerUserRoute = authEntryPoint + "/register"
 )
 
 type server struct {
@@ -45,6 +46,7 @@ func (s server) ListenAndServe() {
 	http.HandleFunc(pauseCampaignRoute, s.pauseCampaignHandler)
 
 	http.HandleFunc(loginUserRoute, s.loginUserHandler)
+	http.HandleFunc(registerUserRoute, s.registerUserHandler)
 
 	http.ListenAndServe(s.Addr, nil)
 }

@@ -1,0 +1,22 @@
+.register {
+  height: 100%;
+}
+
+.register__card.ui.card {
+  margin: auto;
+  width: 300px;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.register__input {
+  margin: 24px 0px;
+}
+
+.login__input {
+  margin: 24px 0px;
+}
+
+.register__image {
+  margin: 24px 0px;
+}
