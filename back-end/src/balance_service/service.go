@@ -9,6 +9,7 @@ import (
 
 type Service interface {
 	GetBalanceByUserID(string) (*balances.Balance, error)
+	InitBalance(string) (*balances.Balance, error)
 }
 
 type basicService struct {
@@ -23,4 +24,8 @@ func NewService(logger log.Logger) Service {
 
 func (s basicService) GetBalanceByUserID(userID string) (*balances.Balance, error) {
 	return s.store.GetBalanceByUserID(userID)
+}
+
+func (s basicService) InitBalance(userID string) (*balances.Balance, error) {
+	return s.store.InitBalance(userID)
 }

@@ -6,4 +6,5 @@ import (
 
 type BalanceInterface interface {
 	GetBalanceByUserID(string) (*balances.Balance, error)
+	InitBalance(string) (*balances.Balance, error)
 }

@@ -6,7 +6,8 @@ import (
 )
 
 const (
-	entryPoint = "/balances"
+	entryPoint       = "/balances"
+	initBalanceRoute = entryPoint + "/init"
 )
 
 type server struct {
@@ -30,6 +31,7 @@ func NewBalanceServer(addr string, logger log.Logger) BalanceServer {
 func (s server) ListenAndServe() {
 
 	http.HandleFunc(entryPoint, s.getBalancesHandler)
+	http.HandleFunc(initBalanceRoute, s.initBalanceHandler)
 
 	http.ListenAndServe(s.Addr, nil)
 }

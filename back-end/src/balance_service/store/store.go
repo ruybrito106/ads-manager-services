@@ -9,6 +9,7 @@ import (
 
 type Store interface {
 	GetBalanceByUserID(id string) (*balances.Balance, error)
+	InitBalance(id string) (*balances.Balance, error)
 }
 
 type basicStore struct {
@@ -22,4 +23,9 @@ func New(logger log.Logger) basicStore {
 func (s basicStore) GetBalanceByUserID(userID string) (*balances.Balance, error) {
 	db := postgres.NewDatabase(s.logger)
 	return db.GetBalanceByUserID(userID)
+}
+
+func (s basicStore) InitBalance(userID string) (*balances.Balance, error) {
+	db := postgres.NewDatabase(s.logger)
+	return db.InitBalance(userID)
 }

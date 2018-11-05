@@ -18,6 +18,7 @@ type BasicDatabase interface {
 
 type BalanceDatabase interface {
 	GetBalanceByUserID(string) (*balances.Balance, error)
+	InitBalance(string) (*balances.Balance, error)
 }
 
 type basicDatabase struct {
@@ -74,6 +75,21 @@ func (c balanceDatabase) GetBalanceByUserID(userID string) (*balances.Balance, e
 	balance := balances.Balance{}
 
 	if err := db.Model(&balance).Where("user_id = ?", userID).Select(); err != nil {
+		return nil, err
+	}
+
+	return &balance, nil
+}
+
+func (c balanceDatabase) InitBalance(userID string) (*balances.Balance, error) {
+	db := c.GetConnection()
+
+	balance := balances.Balance{
+		UserID: userID,
+		Amount: 0,
+	}
+
+	if err := db.Insert(&balance); err != nil {
 		return nil, err
 	}
 

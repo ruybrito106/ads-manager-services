@@ -52,14 +52,3 @@ func (a *authHttpClient) RegisterUser(user *users.User) (*users.User, error) {
 	return user, nil
 
 }
-
-func (a *authHttpClient) GetUserByID(id string) (*users.User, error) {
-
-	// Should perform http request to external auth subsystem
-	if id == "superuser" {
-		return &users.User{ID: id, Password: "12345"}, nil
-	}
-
-	return nil, errors.New("user not found")
-
-}

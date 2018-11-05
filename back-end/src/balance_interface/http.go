@@ -59,3 +59,26 @@ func (c *balanceHttpClient) GetBalanceByUserID(userID string) (*balances.Balance
 	return balanceCodec.BalanceFromJSON(body)
 
 }
+
+func (c *balanceHttpClient) InitBalance(userID string) (*balances.Balance, error) {
+
+	initBalanceByUserIDAddr := c.addr + "/balances/init?id=" + userID
+
+	res, err := c.client.Get(initBalanceByUserIDAddr)
+	if err != nil {
+		return nil, err
+	}
+
+	defer res.Body.Close()
+	if res.StatusCode != http.StatusOK {
+		return nil, errors.New("unexpected response from balance service")
+	}
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	return balanceCodec.BalanceFromJSON(body)
+
+}
