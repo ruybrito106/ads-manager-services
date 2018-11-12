@@ -3,7 +3,6 @@ package postgres
 import (
 	"log"
 	"os"
-	"fmt"
 
 	"github.com/go-pg/pg"
 
@@ -98,7 +97,6 @@ func (c campaignDatabase) GetCampaigns() ([]*campaigns.Campaign, error) {
 	campaigns := []*campaigns.Campaign{}
 
 	if err := db.Model(&campaigns).Select(); err != nil {
-		fmt.Println(err)
 		return nil, err
 	}
 

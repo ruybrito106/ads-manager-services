@@ -6,6 +6,30 @@ services:
       - .env
     ports:
       - "5432:5432"
+  ad-service:
+    image: golang:1.11.1-alpine
+    env_file:
+      - .env
+    volumes:
+      - ./back-end:/go/src/github.com/ruybrito106/ads-manager-services/back-end
+    links:
+      - postgresdb
+    working_dir: /go/src/github.com/ruybrito106/ads-manager-services/back-end
+    command: go run cmd/ad_service/main.go
+    ports:
+      - "8084:8084"
+  place-service:
+    image: golang:1.11.1-alpine
+    env_file:
+      - .env
+    volumes:
+      - ./back-end:/go/src/github.com/ruybrito106/ads-manager-services/back-end
+    links:
+      - postgresdb
+    working_dir: /go/src/github.com/ruybrito106/ads-manager-services/back-end
+    command: go run cmd/place_service/main.go
+    ports:
+      - "8084:8084"
   auth-service:
     image: golang:1.11.1-alpine
     env_file:
