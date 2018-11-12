@@ -1,4 +1,4 @@
-package auth_controller_service
+package auth_service
 
 import (
 	"encoding/json"

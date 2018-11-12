@@ -1,11 +1,14 @@
 package auth_interface
 
 import (
+	"bytes"
 	"errors"
+	"io/ioutil"
 	"net/http"
 	"time"
 
 	"github.com/ruybrito106/ads-manager-services/back-end/src/users"
+	userCodec "github.com/ruybrito106/ads-manager-services/back-end/src/users/json"
 )
 
 const contentType = "application/json"
@@ -35,20 +38,60 @@ func NewAuthInterface(addr string) AuthInterface {
 	return c
 }
 
-func (a *authHttpClient) LoginUser(user *users.User) (*users.User, error) {
+func (c *authHttpClient) LoginUser(user *users.User) (*users.User, error) {
 
-	// Should perform http request to external auth subsystem
-	if user.IsSuperuser() {
-		return user, nil
+	loginUserAddr := c.addr + "/users/login"
+
+	jsonUser, err := userCodec.UserToJSON(user)
+	if err != nil {
+		return nil, err
 	}
 
-	return nil, errors.New("login failed")
+	reader := bytes.NewReader(jsonUser)
+	res, err := c.client.Post(loginUserAddr, contentType, reader)
+	if err != nil {
+		return nil, err
+	}
+
+	defer res.Body.Close()
+	if res.StatusCode != http.StatusOK {
+		return nil, errors.New("unexpected response from auth service")
+	}
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	return userCodec.UserFromJSON(body)
 
 }
 
-func (a *authHttpClient) RegisterUser(user *users.User) (*users.User, error) {
+func (c *authHttpClient) RegisterUser(user *users.User) (*users.User, error) {
 
-	// Should perform http request to external auth subsystem
-	return user, nil
+	registerUserAddr := c.addr + "/users/register"
+
+	jsonUser, err := userCodec.UserToJSON(user)
+	if err != nil {
+		return nil, err
+	}
+
+	reader := bytes.NewReader(jsonUser)
+	res, err := c.client.Post(registerUserAddr, contentType, reader)
+	if err != nil {
+		return nil, err
+	}
+
+	defer res.Body.Close()
+	if res.StatusCode != http.StatusOK {
+		return nil, errors.New("unexpected response from auth service")
+	}
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	return userCodec.UserFromJSON(body)
 
 }

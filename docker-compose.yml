@@ -6,7 +6,7 @@ services:
       - .env
     ports:
       - "5432:5432"
-  auth-controller-service:
+  auth-service:
     image: golang:1.11.1-alpine
     env_file:
       - .env
@@ -15,19 +15,7 @@ services:
     links:
       - postgresdb
     working_dir: /go/src/github.com/ruybrito106/ads-manager-services/back-end
-    command: go run cmd/auth_controller_service/main.go
-    ports:
-      - "8084:8084"
-  campaign-controller-service:
-    image: golang:1.11.1-alpine
-    env_file:
-      - .env
-    volumes:
-      - ./back-end:/go/src/github.com/ruybrito106/ads-manager-services/back-end
-    links:
-      - postgresdb
-    working_dir: /go/src/github.com/ruybrito106/ads-manager-services/back-end
-    command: go run cmd/campaign_controller_service/main.go
+    command: go run cmd/auth_service/main.go
     ports:
       - "8083:8083"
   balance-service:

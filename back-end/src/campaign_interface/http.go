@@ -62,9 +62,9 @@ func (c *campaignHttpClient) GetCampaigns() ([]*campaigns.Campaign, error) {
 	return campaignCodec.CampaignsFromJSON(body)
 }
 
-func (c *campaignHttpClient) CreateCampaign(campaign *campaigns.Campaign) (*campaigns.Campaign, error) {
+func (c *campaignHttpClient) CreateCampaign(userID string, campaign *campaigns.Campaign) (*campaigns.Campaign, error) {
 
-	createCampaignAddr := c.addr + "/campaigns/create"
+	createCampaignAddr := c.addr + "/campaigns/create?id=" + userID
 
 	jsonCampaign, err := campaignCodec.CampaignToJSON(campaign)
 	if err != nil {
@@ -91,9 +91,9 @@ func (c *campaignHttpClient) CreateCampaign(campaign *campaigns.Campaign) (*camp
 
 }
 
-func (c *campaignHttpClient) EditCampaign(campaign *campaigns.Campaign) (*campaigns.Campaign, error) {
+func (c *campaignHttpClient) EditCampaign(userID string, campaign *campaigns.Campaign) (*campaigns.Campaign, error) {
 
-	editCampaignAddr := c.addr + "/campaigns/edit"
+	editCampaignAddr := c.addr + "/campaigns/edit?id=" + userID
 
 	jsonCampaign, err := campaignCodec.CampaignToJSON(campaign)
 	if err != nil {

@@ -5,8 +5,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/ruybrito106/ads-manager-services/back-end/src/auth_controller_interface"
-	"github.com/ruybrito106/ads-manager-services/back-end/src/campaign_controller_interface"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/auth_interface"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaign_interface"
 	"github.com/ruybrito106/ads-manager-services/back-end/src/gateway_service"
 )
 
@@ -20,14 +20,14 @@ func main() {
 
 	go alive()
 
-	iAuthController := auth_controller_interface.NewAuthControllerInterface(os.Getenv("AUTH_CONTROLLER_SERVICE_ADDRESS"))
-	iCampaignController := campaign_controller_interface.NewCampaignControllerInterface(os.Getenv("CAMPAIGN_CONTROLLER_SERVICE_ADDRESS"))
+	iAuth := auth_interface.NewAuthInterface(os.Getenv("AUTH_SERVICE_ADDRESS"))
+	iCampaign := campaign_interface.NewCampaignInterface(os.Getenv("CAMPAIGN_SERVICE_ADDRESS"))
 
 	gateway_service.
 		NewGatewayServer(
 			":8080",
-			iCampaignController,
-			iAuthController,
+			iCampaign,
+			iAuth,
 		).
 		ListenAndServe()
 

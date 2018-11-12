@@ -3,8 +3,8 @@ package gateway_service
 import (
 	"net/http"
 
-	"github.com/ruybrito106/ads-manager-services/back-end/src/auth_controller_interface"
-	"github.com/ruybrito106/ads-manager-services/back-end/src/campaign_controller_interface"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/auth_interface"
+	"github.com/ruybrito106/ads-manager-services/back-end/src/campaign_interface"
 )
 
 const entryPoint = "/"
@@ -29,11 +29,11 @@ type GatewayServer interface {
 	ListenAndServe()
 }
 
-func NewGatewayServer(addr string, iCampaignController campaign_controller_interface.CampaignControllerInterface, iAuthController auth_controller_interface.AuthControllerInterface) GatewayServer {
+func NewGatewayServer(addr string, iCampaign campaign_interface.CampaignInterface, iAuth auth_interface.AuthInterface) GatewayServer {
 	var s GatewayServer
 	s = server{
 		addr,
-		NewService(iCampaignController, iAuthController),
+		NewService(iCampaign, iAuth),
 	}
 	return s
 }

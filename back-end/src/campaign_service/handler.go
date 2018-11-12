@@ -11,13 +11,19 @@ import (
 
 func (s server) createCampaignHandler(w http.ResponseWriter, r *http.Request) {
 
+	var idStrs []string
+	if idStrs = r.URL.Query()["id"]; len(idStrs) == 0 {
+		w.WriteHeader(http.StatusUnprocessableEntity)
+		return
+	}
+
 	campaign := &campaigns.Campaign{}
 	if err := json.NewDecoder(r.Body).Decode(&campaign); err != nil {
 		w.WriteHeader(http.StatusUnprocessableEntity)
 		return
 	}
 
-	created, err := s.Svc.CreateCampaign(campaign)
+	created, err := s.Svc.CreateCampaign(idStrs[0], campaign)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -34,13 +40,19 @@ func (s server) createCampaignHandler(w http.ResponseWriter, r *http.Request) {
 
 func (s server) editCampaignHandler(w http.ResponseWriter, r *http.Request) {
 
+	var idStrs []string
+	if idStrs = r.URL.Query()["id"]; len(idStrs) == 0 {
+		w.WriteHeader(http.StatusUnprocessableEntity)
+		return
+	}
+
 	campaign := &campaigns.Campaign{}
 	if err := json.NewDecoder(r.Body).Decode(&campaign); err != nil {
 		w.WriteHeader(http.StatusUnprocessableEntity)
 		return
 	}
 
-	created, err := s.Svc.EditCampaign(campaign)
+	created, err := s.Svc.EditCampaign(idStrs[0], campaign)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return

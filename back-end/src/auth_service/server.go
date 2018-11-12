@@ -1,15 +1,14 @@
-package auth_controller_service
+package auth_service
 
 import (
 	"log"
 	"net/http"
 
-	"github.com/ruybrito106/ads-manager-services/back-end/src/auth_interface"
 	"github.com/ruybrito106/ads-manager-services/back-end/src/balance_interface"
 )
 
 const (
-	entryPoint        = "/controller/users"
+	entryPoint        = "/users"
 	loginUserRoute    = entryPoint + "/login"
 	registerUserRoute = entryPoint + "/register"
 )
@@ -19,19 +18,15 @@ type server struct {
 	Svc  Service
 }
 
-type AuthControllerServer interface {
+type AuthServer interface {
 	ListenAndServe()
 }
 
-func NewAuthControllerServer(addr string, logger log.Logger, iAuth auth_interface.AuthInterface, iBalance balance_interface.BalanceInterface) AuthControllerServer {
-	var s AuthControllerServer
+func NewAuthServer(addr string, logger log.Logger, iBalance balance_interface.BalanceInterface) AuthServer {
+	var s AuthServer
 	s = server{
 		addr,
-		NewService(
-			logger,
-			iAuth,
-			iBalance,
-		),
+		NewService(logger, iBalance),
 	}
 	return s
 }

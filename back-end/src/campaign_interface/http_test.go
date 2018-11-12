@@ -17,7 +17,7 @@ func TestCreateCampaign(t *testing.T) {
 
 	c := NewCampaignInterface("http://localhost:8081")
 
-	created, err := c.CreateCampaign(fixture)
+	created, err := c.CreateCampaign("132", fixture)
 	if !assert.NoError(t, err) {
 		return
 	}

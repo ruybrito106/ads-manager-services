@@ -3,12 +3,14 @@ package campaign_service
 import (
 	"log"
 	"net/http"
+
+	"github.com/ruybrito106/ads-manager-services/back-end/src/balance_interface"
 )
 
 const (
 	entryPoint          = "/campaigns"
 	createCampaignRoute = entryPoint + "/create"
-	editCampaignRoute = entryPoint + "/edit"
+	editCampaignRoute   = entryPoint + "/edit"
 	pauseCampaignRoute  = entryPoint + "/pause"
 )
 
@@ -21,11 +23,11 @@ type CampaignServer interface {
 	ListenAndServe()
 }
 
-func NewCampaignServer(addr string, logger log.Logger) CampaignServer {
+func NewCampaignServer(addr string, logger log.Logger, iBalance balance_interface.BalanceInterface) CampaignServer {
 	var s CampaignServer
 	s = server{
 		addr,
-		NewService(logger),
+		NewService(logger, iBalance),
 	}
 	return s
 }
